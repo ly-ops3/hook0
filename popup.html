@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hanyu Resource Saver</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="panel">
+      <h1>JSON 保存器</h1>
+      <p class="subtitle">對當前標籤頁啟用 fetch / XHR hook，只保存之後返回的 JSON 類資料。</p>
+
+      <label class="field">
+        <span>下載子目錄</span>
+        <input id="rootFolder" type="text" placeholder="HanyuResourceSaver">
+      </label>
+
+      <div class="actions">
+        <button id="startButton" class="primary">開始抓取</button>
+        <button id="stopButton" class="secondary">停止抓取</button>
+      </div>
+
+      <section class="status">
+        <div><strong>當前標籤頁：</strong><span id="tabInfo">讀取中</span></div>
+        <div><strong>狀態：</strong><span id="statusText">未啟用</span></div>
+        <div><strong>已保存：</strong><span id="savedCount">0</span></div>
+        <div><strong>最後錯誤：</strong><span id="lastError">無</span></div>
+      </section>
+
+      <section class="debug">
+        <div class="debugHeader">
+          <strong>調試面板</strong>
+          <button id="refreshButton" class="ghost">刷新</button>
+        </div>
+        <div id="debugList" class="debugList"></div>
+      </section>
+
+      <section class="notes">
+        <p>說明：</p>
+        <p>1. 這個版本不使用 debugger，改用 CSP 友好的 MAIN world 腳本。</p>
+        <p>2. 調試面板會顯示最近的攔截、跳過、保存與錯誤事件。</p>
+        <p>3. 如果開始前資料已經載入過，請切換詞條或刷新頁面再觀察。</p>
+      </section>
+    </main>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

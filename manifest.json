@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "Hanyu Resource Saver",
+  "version": "2.1.0",
+  "description": "Hook fetch and XMLHttpRequest in the page, then save returned JSON data from the active tab.",
+  "permissions": [
+    "activeTab",
+    "downloads",
+    "scripting",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "page_hook_main.js"
+      ],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "page_bridge.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Resource Saver",
+    "default_popup": "popup.html"
+  }
+}
